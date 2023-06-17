@@ -19,12 +19,12 @@ async def join(request: types.ChatJoinRequest):
 	username = request.from_user.username
 	chat_id = request.chat.id
 	logger.info(f"{username}({user_id}) is requesting to join {chat_id}.")
-	message = await bot.send_message(chat_id, f"@{username}({user_id}) is requesting to join this group.")
+	message = await bot.send_message(chat_id, f"@{username}({user_id}) 想加入这个群")
 	await bot.pin_chat_message(chat_id, message.message_id)
 	polling = await bot.send_poll(
 		chat_id,
-		"Approve this user?",
-		["Yes", "No"],
+		"要让这个家伙进群吗？",
+		["好！", "不好！"],
 		is_anonymous=True,
 		allows_multiple_answers=False,
 		reply_to_message_id=message.message_id,
